@@ -14,7 +14,7 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
     String s="";String newName;
     String[] words = new String[4];
-    int randoms,counter=0,flag=0,j=0;
+    int randoms,counter=0,flag=0,b,sum=0;
     int[] a = new int[50];
     TextView hangman,getText,wrongGuesses;
 
@@ -22,10 +22,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        words[0]="ezhils";
-        words[1]="kr";
-        words[2]="arun";
-        words[3] ="hieethere";
+        words[0]="brick";
+        words[1]="jump";
+        words[2]="despicable";
+        words[3] ="extras";
         Random rand = new Random();
         randoms = rand.nextInt(4);
         hangman = (TextView)findViewById(R.id.hangman);
@@ -42,28 +42,31 @@ public class GameActivity extends AppCompatActivity {
                             counter++;
                         }
                     }
-                for (int i = 0; i < words[randoms].length(); i++) {
+                for (int i = 0,j=0; i < words[randoms].length(); i++) {
                     if (words[randoms].charAt(i) == g) {
-                        a[j] = i;
-                        j++;
+                       a[j]=i;
+                       if (j<counter) {
+                           for (int z = 0; z <= j; z++) {
+                               //myName.setCharAt(4, 'x');
+                               // sChars[2*a[z]] = g;
+                               if (flag == 0){
+                                   newName = s.substring(0, 2 * a[z]) + g + s.substring(2 * a[z] + 1);
+                               }
+                               else
+                                   newName = newName.substring(0, 2 * a[z]) + g + newName.substring(2 * a[z] + 1);
+                           }
+                           hangman.setText(newName);
+                       }
+                       else j++;
+
                     }
                 }
                    // char[] sChars = s.toCharArray();
-                    if (flag==0) {
-                        for (int z = 0; z < counter; z++) {
-                            // sChars[2*a[z]] = g;
-                            newName = s.substring(0, 2 * a[z]) + g + s.substring(2 * a[z] + 1);
 
-                        }
-                        hangman.setText(newName);
-                    }
-                    else {
-                        for (int z = 0; z < counter; z++) {
-                            // sChars[2*a[z]] = g;
-                            newName = newName.substring(0, 2 * a[z]) + g + newName.substring(2 * a[z] + 1);
-                        }
-                        hangman.setText(newName);
-                    }
+
+
+
+                                // sChars[2*a[z]] = g;
                     //newName = String.valueOf(sChars);
 
 
@@ -78,8 +81,9 @@ public class GameActivity extends AppCompatActivity {
             else{
                     Toast.makeText(GameActivity.this,
                             "enter only one character", Toast.LENGTH_SHORT).show();}
-                            flag++;
+                            if (counter!=0)flag++;
             }
+
         });
         for ( int l=0;l < words[randoms].length();l++) {
             s = s.concat("_ ");
