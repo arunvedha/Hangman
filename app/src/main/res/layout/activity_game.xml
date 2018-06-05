@@ -6,9 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ADFF2F"
     android:orientation="vertical"
     tools:context=".GameActivity">
-    <TextView
+    <ImageView
+        android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -22,7 +24,10 @@
         android:id="@+id/hangman"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FF1744"
         android:layout_centerHorizontal="true"
+        android:layout_below="@id/high_score"
+        android:layout_margin="8dp"
         android:textSize="20dp"
        />
 
@@ -31,6 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hangman"
+            android:layout_margin="8dp"
+            android:textColor="#283593"
             android:layout_centerHorizontal="true"
             android:hint="guess here" />
 
@@ -40,22 +47,46 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/gettext"
             android:hint="wrong guesses"
+            android:textColor="#283593"
+            android:layout_margin="8dp"
             android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_margin="8dp"
             android:hint="0"
+            android:textColor="#283593"
             android:layout_below="@+id/wrong_guesses"
             android:layout_centerHorizontal="true"/>
         <Button
             android:id="@+id/check_guess"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
+            android:text="go"
+            android:textColor="#283593"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/gettext"
             android:layout_alignBottom="@+id/gettext"/>
+
+
+        <TextView
+            android:id="@+id/score_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/counter"
+            android:textColor="#283593"
+            android:layout_margin="8dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/high_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF8F00"
+            android:text="HIGH SCORE: 0"
+            android:layout_margin="8dp"
+            android:layout_alignParentRight="true"/>
 
 
     </RelativeLayout>
