@@ -54,10 +54,6 @@ public class GameActivity extends AppCompatActivity {
         highScoreView=(TextView)findViewById(R.id.high_score);
         highScoreView.setText("HIGH SCORE: "+score);
         final Button check = (Button)findViewById(R.id.check_guess);
-
-        //SharedPreferences myscore=this.getSharedPreferences("My awesome score ",Context.MODE_PRIVATE);
-        //        highScore = myscore.getInt("highscore",0);
-
         hangImage=(ImageView)findViewById(R.id.image);
         hangImage.setImageResource(R.drawable.zero);
         check.setOnClickListener(new View.OnClickListener() {
@@ -124,22 +120,6 @@ public class GameActivity extends AppCompatActivity {
                             highScoreView.setText("HIGH SCORE: "+ score);
                         }
                     }
-
-                   // char[] sChars = s.toCharArray();
-
-
-
-
-                                // sChars[2*a[z]] = g;
-                    //newName = String.valueOf(sChars);
-
-
-
-                    //String myName = "domanokz";
-                    //char[] myNameChars = myName.toCharArray();
-                    //myNameChars[4] = 'x';
-                    //myName = String.valueOf(myNameChars);
-                    //String newName = myName.substring(0,4)+'x'+myName.substring(5);
 
             }
             }
