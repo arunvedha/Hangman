@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
     String s="";String newName="_",w="";
-    String[] words = new String[4];
+    String[] words = new String[15];
     int randoms,counter=0,flag=0,sum=0,score=0,highScore=0;
     int[] a = new int[50];
     TextView hangman,getText,wrongGuesses,wrongGuessCounter,scoreView,highScoreView;
@@ -30,10 +30,21 @@ public class GameActivity extends AppCompatActivity {
         words[1]="jump";
         words[2]="despicable";
         words[3] ="extras";
-        Random rand = new Random();
-        randoms = rand.nextInt(4);
+        words[5]="knowledge";
+        words[6]="power";
+        words[7]="money";
+        words[8]="trust";
+        words[9]="investigate";
+        words[10]="psycho";
+        words[11]="break";
+        words[12]="message";
+        words[13]="profile";
+        words[14]="crush";
 
-        SharedPreferences myscore = getSharedPreferences("scoreInfo", MODE_PRIVATE);
+        Random rand = new Random();
+        randoms = rand.nextInt(15);
+
+        SharedPreferences myscore = getSharedPreferences("score info", MODE_PRIVATE);
         score=myscore.getInt("score",0);
 
         hangman = (TextView)findViewById(R.id.hangman);
@@ -41,6 +52,7 @@ public class GameActivity extends AppCompatActivity {
         wrongGuessCounter=(TextView)findViewById(R.id.counter);
         scoreView=(TextView)findViewById(R.id.score_text_view);
         highScoreView=(TextView)findViewById(R.id.high_score);
+        highScoreView.setText("HIGH SCORE: "+score);
         final Button check = (Button)findViewById(R.id.check_guess);
 
         //SharedPreferences myscore=this.getSharedPreferences("My awesome score ",Context.MODE_PRIVATE);
@@ -72,7 +84,8 @@ public class GameActivity extends AppCompatActivity {
                             scoreView.setText("SCORE: 0");
                             check.setEnabled(false);
                             Toast.makeText(GameActivity.this,
-                                    "GAME OVER,YOU LOST", Toast.LENGTH_LONG).show();
+                                    "GAME OVER,YOU LOST\nTHE CORRECT ANSWER IS " + words[randoms], Toast.LENGTH_LONG).show();
+
                         }
                     }
                     else
@@ -104,12 +117,12 @@ public class GameActivity extends AppCompatActivity {
                         check.setEnabled(false);
                         if ((7-sum)>score){
                             score=7-sum;
-                            SharedPreferences myscore = getSharedPreferences("score info", Context.MODE_PRIVATE);
+                            SharedPreferences myscore = getSharedPreferences("score info", Context .MODE_PRIVATE);
                             SharedPreferences.Editor editor = myscore.edit();
                             editor.putInt("score",score);
                             editor.apply();
                             highScoreView.setText("HIGH SCORE: "+ score);
-                            }
+                        }
                     }
 
                    // char[] sChars = s.toCharArray();
@@ -129,9 +142,6 @@ public class GameActivity extends AppCompatActivity {
                     //String newName = myName.substring(0,4)+'x'+myName.substring(5);
 
             }
-            else{
-                    Toast.makeText(GameActivity.this,
-                            "enter only one character", Toast.LENGTH_SHORT).show();}
             }
 
         });
@@ -171,22 +181,5 @@ public void setimage(int sum){
 
         }
 }
-    private void saveInfo() {
-        SharedPreferences sharedpref = getSharedPreferences("scoreInfo", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpref.edit();
-        if(highScore>score);
-        else
-        {editor.putInt("highscore",score);
-            highScore=score;}
-        editor.apply();
-    }
-
-    private void loadInfo() {
-        SharedPreferences sharedpref = getSharedPreferences("scoreInfo", MODE_PRIVATE);
-       score=sharedpref.getInt("highscore",0);
-
-
-    }
-
 
 }

@@ -39,6 +39,7 @@
             android:layout_margin="8dp"
             android:textColor="#283593"
             android:layout_centerHorizontal="true"
+            android:maxLength="1"
             android:hint="guess here" />
 
         <TextView
@@ -87,6 +88,7 @@
             android:text="HIGH SCORE: 0"
             android:layout_margin="8dp"
             android:layout_alignParentRight="true"/>
+
 
 
     </RelativeLayout>
